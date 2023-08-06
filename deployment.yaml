@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html2png
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: html2png
+  template:
+    metadata:
+      labels:
+        app: html2png
+    spec:
+      containers:
+        - name: html2png
+          image: registry.ap-southeast-1.aliyuncs.com/pdfgpt/html2png:v0.0.3
+          ports:
+            - containerPort: 3000
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          volumeMounts:
+            - mountPath: '/opt/output/log'
+              subPath: 'log'
+              name: log-storage
+      imagePullSecrets:
+        - name: aliyun-secret
+      volumes:
+        - name: log-storage
+          persistentVolumeClaim:
+            claimName: log-pvc
