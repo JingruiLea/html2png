@@ -16,7 +16,10 @@ app.post('/html2png', async (req, res) => {
     return res.status(400).send({ error: 'Missing URL' })
   }
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true,
+  })
   const page = await browser.newPage()
 
   // 设置视口大小
@@ -55,7 +58,10 @@ app.post('/html2pdf', async (req, res) => {
     return res.status(400).send({ error: 'Missing URL' })
   }
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true,
+  })
   const page = await browser.newPage()
 
   try {
