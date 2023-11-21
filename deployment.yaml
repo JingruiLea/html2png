@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: html2png
-          image: registry.ap-southeast-1.aliyuncs.com/pdfgpt/html2png:v0.0.3
+          image: registry.ap-southeast-1.aliyuncs.com/pdfgpt/html2png:1700546934
           ports:
             - containerPort: 3000
           env:
