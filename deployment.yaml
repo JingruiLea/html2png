@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: html2png
-          image: registry.ap-southeast-1.aliyuncs.com/pdfgpt/html2png:1700564055
+          image: registry.cn-hangzhou.aliyuncs.com/pdfgpthz/html2png:20240105
           ports:
             - containerPort: 3000
           env:
@@ -30,7 +30,7 @@ spec:
               subPath: 'log'
               name: log-storage
       imagePullSecrets:
-        - name: aliyun-secret
+        - name: aliyun-secret-hz
       volumes:
         - name: log-storage
           persistentVolumeClaim:

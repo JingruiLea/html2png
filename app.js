@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 
 app.post('/html2png', async (req, res) => {
-  console.log('Received request')
+  console.log('Received request', JSON.stringify(req.body))
 
   const url = req.body.url
   const width = req.body.width || 800
